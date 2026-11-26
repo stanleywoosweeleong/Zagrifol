@@ -114,7 +114,8 @@ const S={
  noBoth:{zh:'传单里没有同时符合这个作物和这个效果的产品。下面先列出传单标明适用于这个作物的产品：',en:'The leaflet has no product for both this crop and this goal. Here are the products the leaflet lists for this crop:',bm:'Risalah tiada produk untuk tanaman dan tujuan ini sekali gus. Berikut produk yang disenaraikan untuk tanaman ini:'},
  more:{zh:'看详细说明',en:'Details',bm:'Butiran'},
  what:{zh:'是什么',en:'What it is',bm:'Apa ia'}, does:{zh:'传单说的效果',en:'What the leaflet says it does',bm:'Kesan menurut risalah'},
- crops:{zh:'传单标明适用作物',en:'Crops listed in the leaflet',bm:'Tanaman dalam risalah'},
+ label:{zh:'瓶子标签上的成分',en:'Declared content on the bottle',bm:'Kandungan pada label botol'},
+ crops:{zh:'传单或瓶标标明适用作物',en:'Crops listed on the leaflet or bottle',bm:'Tanaman dalam risalah atau label'},
  pack:{zh:'传单图中的包装',en:'Pack sizes shown',bm:'Saiz pek ditunjukkan'},
  doseL:{zh:'用量',en:'Dose',bm:'Dos'},
  dose:{zh:'传单没有印用量。请照瓶子上的标签配药。',en:'The leaflet prints no dose. Mix according to the label on the bottle.',bm:'Risalah tidak mencetak dos. Bancuh mengikut label pada botol.'},
@@ -185,9 +186,10 @@ const P=[
  tag:{zh:'根好苗壮产优',en:'Good roots and strong plants for high yields',bm:'Akar baik, pokok kuat, hasil tinggi'},
  d:{zh:'由多种根系生长促进剂配制，专门用来促进根系发育。含海藻精华、腐殖酸、黄腐酸、氨基酸和生物活性植物提取物。',en:'A formula of root growth enhancers made to promote root development, with seaweed extract, humic acid, fulvic acid, amino acids and bioactive plant extracts.',bm:'Formula penggalak akar untuk perkembangan akar, dengan ekstrak rumpai laut, asid humik, asid fulvik, asid amino dan ekstrak tumbuhan bioaktif.'},
  p:{zh:['促进根系发育','加速根系生长','促进作物早熟'],en:['Promotes root development','Accelerates root growth','Promotes early maturity'],bm:['Menggalakkan perkembangan akar','Mempercepat pertumbuhan akar','Menggalakkan kematangan awal']}},
-{id:'zmc',nm:'ZMC-36X',cn:'',b:'sr',pk:'5 L',goals:['strong','stress'],crops:['durian','fruit','tomato','citrus','ornamental','cucurbit'],
+{id:'zmc',nm:'ZMC-36X',cn:'',b:'sr',pk:'5 L',goals:['strong','stress'],crops:['durian','fruit','citrus','veg','tomato','cucurbit','ornamental'],
  tag:{zh:'高效铜元素',en:'Copper power for peak performance',bm:'Kuasa kuprum untuk prestasi puncak'},
- d:{zh:'含铜、锌和钼微量元素，与木质磺酸（lignosulfonic acid）复合。',en:'Contains the trace elements copper, zinc and molybdenum, with lignosulfonic acid.',bm:'Mengandungi unsur surih kuprum, zink dan molibdenum, bersama asid lignosulfonik.'},
+ d:{zh:'含铜、锰和锌微量元素，与木质磺酸（lignosulphonic acid）复合。专门满足作物对铜的较高需求，帮助预防缺铜引起的逆境问题。',en:'Contains the trace elements copper, manganese and zinc, complexed with lignosulphonic acid. A targeted supplement for crops with a higher demand for copper, helping prevent stress linked to copper deficiency.',bm:'Mengandungi unsur surih kuprum, mangan dan zink, dikompleks dengan asid lignosulfonik. Suplemen khusus untuk tanaman yang memerlukan lebih kuprum, membantu mengelak tekanan akibat kekurangan kuprum.'},
+ lb:{zh:['铜 (Cu)：1.5% 硫酸盐水溶 ＋ 1.35% 木质磺酸络合','锰 (Mn)：0.5% 硫酸盐水溶 ＋ 0.45% 木质磺酸络合','锌 (Zn)：0.5% 硫酸盐水溶 ＋ 0.45% 木质磺酸络合','稳定的 pH 范围：2–9','传单写的是铜、锌、钼；这里以瓶子标签为准（铜、锰、锌）'],en:['Copper (Cu): 1.5% as sulphate, water soluble + 1.35% complexed by lignosulphonic acid','Manganese (Mn): 0.5% as sulphate, water soluble + 0.45% complexed','Zinc (Zn): 0.5% as sulphate, water soluble + 0.45% complexed','Stable pH range: 2–9','The leaflet says copper, zinc and molybdenum; this follows the bottle label (copper, manganese, zinc)'],bm:['Kuprum (Cu): 1.5% sebagai sulfat, larut air + 1.35% dikompleks dengan asid lignosulfonik','Mangan (Mn): 0.5% sebagai sulfat, larut air + 0.45% dikompleks','Zink (Zn): 0.5% sebagai sulfat, larut air + 0.45% dikompleks','Julat pH stabil: 2–9','Risalah menyebut kuprum, zink dan molibdenum; di sini mengikut label botol (kuprum, mangan, zink)']},
  p:{zh:['及时高效地提供这三种营养元素','强化植物的活力和韧性','增强植物免疫力和抗恶劣环境的能力'],en:['Supplies these three nutrients efficiently','Strengthens plant vitality and resilience','Enhances plant immunity and resistance to harsh environments'],bm:['Membekalkan tiga nutrien ini dengan cekap','Menguatkan kecergasan dan daya tahan pokok','Meningkatkan imuniti pokok dan ketahanan terhadap persekitaran teruk']}},
 {id:'silicon',nm:'Silicon 300',cn:'金硅肥300',b:'sr',pk:'5 L · 1 L',goals:['strong','soil'],crops:['paddy','durian','fruit','corn','sugarcane','strawberry','ornamental'],
  tag:{zh:'硅力护植',en:'Silicon protection for your plant',bm:'Perlindungan silikon untuk pokok anda'},
@@ -214,6 +216,7 @@ function card(p,open){
  <details${open?' open':''}><summary>${t(S.more)}</summary><div class="body">
  <div class="lab">${t(S.what)}</div><p>${t(p.d)}</p>
  <div class="lab">${t(S.does)}</div><ul>${t(p.p).map(x=>`<li>${x}</li>`).join('')}</ul>
+ ${p.lb?`<div class="lab">${t(S.label)}</div><ul>${t(p.lb).map(x=>`<li>${x}</li>`).join('')}</ul>`:''}
  ${p.combo?`<div class="lab">${t(S.combo)}</div><p>${p.nm} + ${byId(p.combo).nm}</p>`:''}
  <div class="lab">${t(S.crops)}</div><div class="crops">${p.crops.map(cropChip).join('')}</div>
  <div class="lab">${t(S.pack)}</div><p>${p.pk}</p>
